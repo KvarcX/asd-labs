@@ -5,29 +5,37 @@
 class Queue:
     # очередь: добавляем в конец, забираем из начала (FIFO)
     def __init__(self):
+        # Начинаем с пустого списка.
         self.items = []
 
     def enqueue(self, item):
+        # Новые элементы встают в конец очереди.
         self.items.append(item)
 
     def dequeue(self):
+        # Если очередь пуста, брать нечего.
         if self.is_empty():
             return None
+        # Забираем первый элемент и удаляем его из списка.
         return self.items.pop(0)
 
     def peek(self):
-        # смотрим первый элемент, но из очереди его не убираем.
+        # Если очередь пуста, смотреть нечего.
         if self.is_empty():
             return None
+        # Смотрим первый элемент, но не убираем его.
         return self.items[0]
 
     def is_empty(self):
+        # Очередь пуста, если в списке ноль элементов.
         return len(self.items) == 0
 
     def size(self):
+        # Размер очереди - сколько элементов в списке.
         return len(self.items)
 
     def clear(self):
+        # Заменяем список пустым.
         self.items = []
 
 
@@ -48,12 +56,14 @@ while True:
         q.enqueue(x)
     elif c == "2":
         x = q.dequeue()
+        # None означает, что забирать было нечего.
         if x is None:
             print("Очередь пуста")
         else:
             print("Взяли:", x)
     elif c == "3":
         x = q.peek()
+        # None означает, что первого элемента нет.
         if x is None:
             print("Очередь пуста")
         else:
