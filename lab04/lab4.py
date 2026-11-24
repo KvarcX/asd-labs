@@ -9,13 +9,14 @@ def factorial(n):
 
 
 def fib(n):
-    # fib(1) = 1, fib(2) = 1
+    # число на позиции n в бесконечном ряду, где каждое следующее число получается сложением двух предыдущих.
     if n <= 2:
         return 1
     return fib(n - 1) + fib(n - 2)
 
 
 def power(x, n):
+    # x в степени n: для положительной степени умножаем x на себя n раз, для отрицательной берём обратное число.
     if n == 0:
         return 1
     if n < 0:
@@ -24,6 +25,7 @@ def power(x, n):
 
 
 def is_palindrome(s):
+    # палиндром читается одинаково в обе стороны: сравниваем крайние символы и проверяем то, что осталось между ними.
     if len(s) <= 1:
         return True
     if s[0] != s[-1]:
@@ -32,6 +34,7 @@ def is_palindrome(s):
 
 
 def binary_search(arr, x, left, right):
+    # ищем x в отсортированном массиве: сравниваем с серединой и каждый раз отбрасываем половину.
     if left > right:
         return -1
     mid = (left + right) // 2
@@ -42,13 +45,15 @@ def binary_search(arr, x, left, right):
     return binary_search(arr, x, left, mid - 1)
 
 
-def reverse_words(words):
+def reverse_words(words: list[str]) -> list[str]:
+    # меняем порядок слов, а не букв: переворачиваем всё после первого слова, а само первое слово ставим в конец.
     if len(words) <= 1:
         return words
     return reverse_words(words[1:]) + [words[0]]
 
 
 def is_prime(n):
+    # простое число больше единицы и делится только на единицу и на себя. Если есть делитель, один из пары не больше корня.
     if n < 2:
         return False
     i = 2
@@ -60,7 +65,7 @@ def is_prime(n):
 
 
 def prime_sum(n, start):
-    # пробуем взять простое p (от большего к меньшему) и разложить остаток
+    # раскладываем n на сумму простых: берём простое число, а остаток раскладываем так же. Если не вышло, пробуем меньшее.
     if n == 0:
         return []
     for p in range(min(n, start), 1, -1):
@@ -72,6 +77,7 @@ def prime_sum(n, start):
 
 
 def count_digits(n):
+    # считаем цифры без знака: деление на 10 нацело убирает по одной цифре справа.
     n = abs(n)
     if n < 10:
         return 1
@@ -79,7 +85,7 @@ def count_digits(n):
 
 
 def hanoi(n, a, b, c):
-    # переносим n дисков со стержня a на стержень c через b
+    # переносим башню с a на c: сначала убираем верхние диски на b, потом переносим нижний на c и ставим остальные сверху.
     if n == 0:
         return
     hanoi(n - 1, a, c, b)

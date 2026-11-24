@@ -39,6 +39,7 @@ def task1():
             res.append(a[i][right])
         for j in range(right - 1, left, -1):  # первая строка влево
             res.append(a[top][j])
+        # после обхода внешнего слоя переходим к следующему, внутреннему.
         top += 1
         bottom -= 1
         left += 1
@@ -52,6 +53,7 @@ def task2():
     k = int(input("K = "))
     s = 0
     p = 1
+    # берём строку K целиком: a[k - 1] - это строка с номером K.
     for x in a[k - 1]:
         s += x
         p *= x
@@ -67,6 +69,7 @@ def task3():
     best = 0
     min_p = None
     for j in range(n):
+        # перемножаем элементы одного столбца и сравниваем произведение с минимумом.
         p = 1
         for i in range(m):
             p *= a[i][j]
@@ -86,6 +89,7 @@ def task4():
         s = 0
         for i in range(m):
             s += a[i][j]
+        # считаем среднее этого столбца и сравниваем с ним каждый элемент.
         avg = s / m
         cnt = 0
         for i in range(m):
@@ -103,6 +107,7 @@ def task5():
     for j in range(n):
         odd = True
         for i in range(m):
+            # одного чётного числа достаточно, чтобы пропустить весь столбец.
             if a[i][j] % 2 == 0:
                 odd = False
                 break
@@ -116,6 +121,7 @@ def task6():
     print("\n6. Поменять местами минимальный и максимальный элемент в каждой строке")
     a = read_matrix()
     for row in a:
+        # ищем минимум и максимум отдельно в каждой строке.
         i_min = row.index(min(row))
         i_max = row.index(max(row))
         row[i_min], row[i_max] = row[i_max], row[i_min]
@@ -139,6 +145,7 @@ def task7():
             if a[i][j] > mx:
                 mx = a[i][j]
                 j_max = j
+    # меняем местами эти два столбца, переставляя их элементы в каждой строке.
     for i in range(m):
         a[i][j_min], a[i][j_max] = a[i][j_max], a[i][j_min]
     print_matrix(a)
@@ -153,6 +160,7 @@ def task8():
     hn = n // 2
     for i in range(hm):
         for j in range(hn):
+            # парная клетка в нижней правой четверти на hm строк ниже и hn столбцов правее.
             a[i][j], a[i + hm][j + hn] = a[i + hm][j + hn], a[i][j]
     print_matrix(a)
 
@@ -161,7 +169,7 @@ def task9():
     print("\n9. Упорядочить строки по возрастанию первых элементов")
     a = read_matrix()
     m = len(a)
-    # сортировка выбором по первому элементу строки
+    # сравниваем первые элементы, а местами меняем целые строки.
     for i in range(m - 1):
         k = i
         for j in range(i + 1, m):
@@ -175,7 +183,7 @@ def task10():
     print("\n10. Суммы диагоналей, параллельных главной")
     a = read_matrix()
     m = len(a)
-    # d = j - i, начинаем с левого нижнего угла (одноэлементная диагональ)
+    # на одной диагонали разница j - i одинаковая, поэтому столбец находим как j = i + d.
     for d in range(-(m - 1), m):
         s = 0
         for i in range(m):

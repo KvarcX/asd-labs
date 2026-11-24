@@ -16,6 +16,7 @@ class Queue:
         return self.items.pop(0)
 
     def peek(self):
+        # смотрим первый элемент, но из очереди его не убираем.
         if self.is_empty():
             return None
         return self.items[0]

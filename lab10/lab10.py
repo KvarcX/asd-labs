@@ -10,6 +10,7 @@ def binary_search(a, x):
         print("left =", left, "right =", right, "mid =", mid, "a[mid] =", a[mid])
         if a[mid] == x:
             return mid
+        # если середина больше искомого числа, ищем слева, иначе справа.
         if a[mid] > x:
             right = mid - 1
         else:

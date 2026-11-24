@@ -10,7 +10,7 @@ class Node:
 
 
 def insert(root, value):
-    # вставка в бинарное дерево поиска
+    # меньше текущего узла - идём влево, больше или равно - вправо.
     if root is None:
         return Node(value)
     if value < root.value:
@@ -45,7 +45,7 @@ def postorder(root, res):
 
 
 def level_order(root):
-    # обход в ширину, по уровням
+    # берём узел из начала очереди, а его детей добавляем в конец.
     res = []
     if root is None:
         return res
